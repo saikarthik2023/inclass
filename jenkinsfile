@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy to GCS') {
             steps {
                 // Deploy artifacts to Google Cloud Storage
-                sh 'gsutil cp target/*.jar gs://your-bucket-name/'
+                sh 'gsutil cp target/*.jar gs://inclass_3_bucket/'
             }
         }
     }
