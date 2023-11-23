@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout source code from version control
+                git branch: 'main', url: 'https://github.com/saikarthik2023/inclass.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build your Java Maven project
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run tests (replace with your testing commands)
+                sh 'mvn test'
+            }
+        }
+
+        stage('Deploy to GCS') {
+            steps {
+                // Deploy artifacts to Google Cloud Storage
+                sh 'gsutil cp target/*.jar gs://your-bucket-name/'
+            }
+        }
+    }
+}
